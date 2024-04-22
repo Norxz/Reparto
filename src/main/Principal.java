@@ -2,6 +2,7 @@ package main;
 
 import java.util.Scanner;
 import dataStructures.*;
+import java.util.Iterator;
 import objects.*;
 
 /**
@@ -95,7 +96,7 @@ public class Principal {
                     int price = Operators.priceCalculator(weight, volumetricWeight);
                     if (volume < 32000000) {
                         Boxes box = new Boxes(volume, volumetricWeight, weight, height, wide, large, price, sender, receiver, direction, distance);
-                        
+
                     } else {
                         System.out.println("La caja es muy grande para ingresarla al camión");
                     }
@@ -106,11 +107,12 @@ public class Principal {
                     if (principal.boxes.isEmpty()) {
                         System.out.println("No hay cajas en la cola para enviar a las bodegas.");
                     } else {
-                        while (!principal.boxes.isEmpty()) {
-                            principal.boxes.dequeue(); // Sacamos la caja de la cola
-                            String direccion = box.getAdress(); // Obtenemos la dirección de la caja
-
-                            switch (direccion) {
+                        Iterator<Boxes> iterator = principal.boxes.iterator();
+                        while (iterator.hasNext()) {
+                            Boxes box = iterator.next();
+                            direction = box.getDirection();
+  
+                            switch (direction) {
                                 case "north" ->
                                     principal.northS.add(box);
                                 case "south" ->
@@ -122,14 +124,16 @@ public class Principal {
                                 case "center" ->
                                     principal.centerS.add(box);
                                 default ->
-                                    System.out.println("Dirección desconocida: " + direccion);
+                                    System.out.println("Dirección desconocida: " + direction);
                             }
                         }
                         System.out.println("Todas las cajas han sido enviadas a sus respectivas bodegas.");
                     }
+
                     break;
                 }
             }
+
         } while (true);
     }
 
