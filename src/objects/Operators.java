@@ -13,7 +13,7 @@ public class Operators {
      * @param volumetricWeight
      * @return
      */
-    public static int priceCalculator(double weight, double volumetricWeight) {
+    public int priceCalculator(double weight, double volumetricWeight) {
         if (weight > volumetricWeight) {
             return (int) (weight * 2);
         } else {
@@ -29,11 +29,11 @@ public class Operators {
      * @param wide
      * @return
      */
-    public static double volumenCalculator(double weight, double height, double wide) {
+    public double volumenCalculator(double weight, double height, double wide) {
         return weight * height * wide;
     }
 
-    public static double distanceCalculator() {
+    public double distanceCalculator() {
         return (Math.random() * 990) + 10;
     }
 
@@ -43,7 +43,7 @@ public class Operators {
      * @param volume
      * @return
      */
-    public static double volumetricWeightCalculator(double volume) {
+    public double volumetricWeightCalculator(double volume) {
         return volume / 5000;
     }
 

@@ -23,15 +23,22 @@ public class Principal {
     Stack westT = new Stack();
     Stack centerT = new Stack();
     Bags stats = new Bags();
+    Operators op = new Operators();
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Principal ppal = new Principal();
         int opc;
         String direction = null;
+        Principal ppal = new Principal();
         Scanner in = new Scanner(System.in);
+        Iterator<Boxes> itQueue = ppal.boxes.iterator();
+        Iterator<Boxes> itEastS = ppal.eastS.iterator();
+        Iterator<Boxes> itWestS = ppal.westS.iterator();
+        Iterator<Boxes> itNorthS = ppal.northS.iterator();
+        Iterator<Boxes> itSouthS = ppal.southS.iterator();
+        Iterator<Boxes> itCenterS = ppal.centerS.iterator();
 
         System.out.println("Bienvenido usuario!");
 
@@ -90,10 +97,10 @@ public class Principal {
                     double large = in.nextDouble();
                     System.out.println("Ingrese el peso de la caja: ");
                     double weight = in.nextDouble();
-                    double distance = Operators.distanceCalculator();
-                    double volume = Operators.volumenCalculator(weight, height, wide);
-                    double volumetricWeight = Operators.volumetricWeightCalculator(volume);
-                    int price = Operators.priceCalculator(weight, volumetricWeight);
+                    double distance = ppal.op.distanceCalculator();
+                    double volume = ppal.op.volumenCalculator(weight, height, wide);
+                    double volumetricWeight = ppal.op.volumetricWeightCalculator(volume);
+                    int price = ppal.op.priceCalculator(weight, volumetricWeight);
                     Boxes box = new Boxes(volume, volumetricWeight, weight, height, wide, large, price, sender, receiver, direction, distance);
 
                     break;
@@ -102,9 +109,8 @@ public class Principal {
                     if (ppal.boxes.isEmpty()) {
                         System.out.println("No hay cajas en la cola para enviar a las bodegas.");
                     } else {
-                        Iterator<Boxes> it = ppal.boxes.iterator();
-                        while (it.hasNext()) {
-                            Boxes box = it.next();
+                        while (itQueue.hasNext()) {
+                            Boxes box = itQueue.next();
                             direction = box.getDirection();
 
                             switch (direction) {
@@ -128,7 +134,7 @@ public class Principal {
                     break;
                 }
                 case 3 -> {
-                    Itera
+                    
                 }
             }
 
