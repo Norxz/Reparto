@@ -4,7 +4,7 @@ package objects;
  *
  * @author espin
  */
-public class Box {
+public class Box extends Guides{
     private double volume;
     private double volumetricWeight;
     private double weight;
@@ -13,7 +13,8 @@ public class Box {
     private double large;
     private double price;
 
-    public Box(double volume, double volumetricWeight, double weight, double height, double wide, double large, double price) {
+    public Box(double volume, double volumetricWeight, double weight, double height, double wide, double large, double price, String sender, String receiver, String adress) {
+        super(sender, receiver, adress);
         this.volume = volume;
         this.volumetricWeight = volumetricWeight;
         this.weight = weight;
@@ -21,10 +22,8 @@ public class Box {
         this.wide = wide;
         this.large = large;
         this.price = price;
-    }
-
-    
-    
+    }    
+            
     public int priceCalculator(){
         if (weight > volumetricWeight) {
             return (int) (weight * 2);
@@ -69,7 +68,10 @@ public class Box {
         return price;
     }
 
+    @Override
+    public String toString() {
+        return "Box{" + "volume=" + volume + ", volumetricWeight=" + volumetricWeight + ", weight=" + weight + ", height=" + height + ", wide=" + wide + ", large=" + large + ", price=" + price + '}';
+    }
     
-
     
 }
