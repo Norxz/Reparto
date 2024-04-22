@@ -47,11 +47,13 @@ public class Bags<Item> implements Iterable<Item> {
 
         private Node current = first;
 
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
-        public Item next() {
+        @Override
+       public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }

@@ -77,10 +77,12 @@ public class List<Item> implements Iterable<Item> {
         private Node current = first;
         private int index = 0;
 
+        @Override
         public boolean hasNext() {
             return index < count;
         }
 
+        @Override
         public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
