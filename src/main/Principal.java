@@ -28,7 +28,7 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Principal principal = new Principal();
+        Principal ppal = new Principal();
         int opc;
         String direction = null;
         Scanner in = new Scanner(System.in);
@@ -94,35 +94,30 @@ public class Principal {
                     double volume = Operators.volumenCalculator(weight, height, wide);
                     double volumetricWeight = Operators.volumetricWeightCalculator(volume);
                     int price = Operators.priceCalculator(weight, volumetricWeight);
-                    if (volume < 32000000) {
-                        Boxes box = new Boxes(volume, volumetricWeight, weight, height, wide, large, price, sender, receiver, direction, distance);
-
-                    } else {
-                        System.out.println("La caja es muy grande para ingresarla al camión");
-                    }
+                    Boxes box = new Boxes(volume, volumetricWeight, weight, height, wide, large, price, sender, receiver, direction, distance);
 
                     break;
                 }
                 case 2 -> {
-                    if (principal.boxes.isEmpty()) {
+                    if (ppal.boxes.isEmpty()) {
                         System.out.println("No hay cajas en la cola para enviar a las bodegas.");
                     } else {
-                        Iterator<Boxes> iterator = principal.boxes.iterator();
-                        while (iterator.hasNext()) {
-                            Boxes box = iterator.next();
+                        Iterator<Boxes> it = ppal.boxes.iterator();
+                        while (it.hasNext()) {
+                            Boxes box = it.next();
                             direction = box.getDirection();
-  
+
                             switch (direction) {
                                 case "north" ->
-                                    principal.northS.add(box);
+                                    ppal.northS.add(box);
                                 case "south" ->
-                                    principal.southS.add(box);
+                                    ppal.southS.add(box);
                                 case "east" ->
-                                    principal.eastS.add(box);
+                                    ppal.eastS.add(box);
                                 case "west" ->
-                                    principal.westS.add(box);
+                                    ppal.westS.add(box);
                                 case "center" ->
-                                    principal.centerS.add(box);
+                                    ppal.centerS.add(box);
                                 default ->
                                     System.out.println("Dirección desconocida: " + direction);
                             }
@@ -131,6 +126,9 @@ public class Principal {
                     }
 
                     break;
+                }
+                case 3 -> {
+                    Itera
                 }
             }
 
