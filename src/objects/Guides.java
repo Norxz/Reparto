@@ -5,15 +5,26 @@ package objects;
  * @author lokci
  */
 public class Guides {
+
     private String sender;
     private String receiver;
-    private String adress;
+    private String direction;
+    private double distance;
 
-    public Guides(String sender, String receiver, String adress) {
+    /**
+     * Constructor
+     *
+     * @param sender
+     * @param receiver
+     * @param direction
+     * @param distance
+     */
+    public Guides(String sender, String receiver, String direction, double distance) {
         this.sender = sender;
         this.receiver = receiver;
-        this.adress = adress;
-    }    
+        this.direction = direction;
+        this.distance = distance;
+    }
 
     public String getSender() {
         return sender;
@@ -23,27 +34,12 @@ public class Guides {
         return receiver;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getDirection() {
+        return direction;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public double getDistance() {
+        return distance;
     }
 
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
-
-    @Override
-    public String toString() {
-        return "Guides{" + "sender=" + sender + ", receiver=" + receiver + ", adress=" + adress + '}';
-    }
-    
-    
-    
 }

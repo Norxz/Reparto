@@ -1,4 +1,4 @@
-package methods;
+package dataStructures;
 
 import java.util.*;
 
@@ -53,10 +53,12 @@ public class Stack<Item> implements Iterable<Item> {
 
         private Node current = first;
 
+        @Override
         public boolean hasNext() {
             return current != null;
         }
 
+        @Override
         public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
