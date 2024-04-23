@@ -132,6 +132,7 @@ public class Principal {
                                 default ->
                                     System.out.println("Dirección desconocida: " + direction);
                             }
+                            ppal.boxes.dequeue();
                         }
                         System.out.println("Todas las cajas han sido enviadas a sus respectivas bodegas.");
                     }
@@ -167,32 +168,32 @@ public class Principal {
                 case 4 -> {
                     System.out.println("Despachando el camión del norte...");
                     while (!ppal.northT.isEmpty()) {
-                        Guides guide = (Guides) ppal.northT.pop();
-                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
+                        Boxes box = (Boxes)ppal.northT.pop();
+                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
 
                     System.out.println("Despachando el camión del sur...");
                     while (!ppal.southT.isEmpty()) {
-                        Guides guide = (Guides) ppal.southT.pop();
-                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
+                        Boxes box = (Boxes)ppal.southT.pop();
+                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
 
                     System.out.println("Despachando el camión del este...");
                     while (!ppal.eastT.isEmpty()) {
-                        Guides guide = (Guides) ppal.eastT.pop();
-                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
+                        Boxes box = (Boxes)ppal.eastT.pop();
+                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
 
                     System.out.println("Despachando el camión del oeste...");
                     while (!ppal.westT.isEmpty()) {
-                        Guides guide = (Guides) ppal.westT.pop();
-                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
+                        Boxes box = (Boxes)ppal.westT.pop();
+                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
 
                     System.out.println("Despachando el camión del centro...");
                     while (!ppal.centerT.isEmpty()) {
-                        Guides guide = (Guides) ppal.centerT.pop();
-                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
+                        Boxes box = (Boxes)ppal.centerT.pop();
+                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
 
                     System.out.println("Todos los camiones han sido despachados.");
