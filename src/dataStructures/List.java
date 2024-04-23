@@ -1,7 +1,6 @@
 package dataStructures;
 
 import java.util.*;
-import objects.Boxes;
 
 public class List<Item> implements Iterable<Item> {
 
