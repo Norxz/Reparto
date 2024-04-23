@@ -40,6 +40,24 @@ public class Boxes extends Guides {
         this.price = price;
     }
 
+    /**
+     *  Obtiene el volumen
+     * 
+     * @return
+     */
+    public double getVolume() {
+        return volume;
+    }
+
+    /**
+     * Obtiene el precio
+     *
+     * @return
+     */
+    public double getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return "Box{" + "volume=" + volume + ", volumetricWeight=" + volumetricWeight + ", weight=" + weight + ", height=" + height + ", wide=" + wide + ", large=" + large + ", price=" + price + '}';

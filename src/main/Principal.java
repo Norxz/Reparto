@@ -29,7 +29,7 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int opc;
+        int opc, profitTotal = 0, profitEast = 0, profitWest = 0, profitCenter = 0, profitSouth = 0, profitNorth = 0;
         String direction;
         Principal ppal = new Principal();
         Scanner in = new Scanner(System.in);
@@ -119,16 +119,32 @@ public class Principal {
                             direction = box.getDirection();
 
                             switch (direction) {
-                                case "north" ->
+                                case "north" -> {
+                                    profitTotal += box.getPrice();
+                                    profitNorth += box.getPrice();
                                     ppal.northS.add(box);
-                                case "south" ->
+                                }
+                                case "south" -> {
+                                    profitTotal += box.getPrice();
+                                    profitSouth += box.getPrice();
                                     ppal.southS.add(box);
-                                case "east" ->
+                                }
+
+                                case "east" -> {
+                                    profitTotal += box.getPrice();
+                                    profitEast += box.getPrice();
                                     ppal.eastS.add(box);
-                                case "west" ->
+                                }
+                                case "west" -> {
+                                    profitTotal += box.getPrice();
+                                    profitEast += box.getPrice();
                                     ppal.westS.add(box);
-                                case "center" ->
+                                }
+                                case "center" -> {
+                                    profitTotal += box.getPrice();
+                                    profitCenter += box.getPrice();
                                     ppal.centerS.add(box);
+                                }
                                 default ->
                                     System.out.println("Dirección desconocida: " + direction);
                             }
@@ -146,56 +162,72 @@ public class Principal {
                     Sort.insertionSort(ppal.westS);
                     Sort.insertionSort(ppal.centerS);
 
-                    while (!ppal.northS.isEmpty()) {
-                        ppal.northT.push(ppal.northS.removeLast());
+                    int tCapacityN = 0;
+                    int tCapacityS = 0;
+                    int tCapacityE = 0;
+                    int tCapacityW = 0;
+                    int tCapacityC = 0;
+
+                    while (!ppal.northS.isEmpty() && tCapacityN < 32000000) {
+                        Boxes box = (Boxes) ppal.northS.removeLast();
+                        tCapacityN += box.getVolume();
+                        ppal.northT.push(box);
                     }
-                    while (!ppal.southS.isEmpty()) {
+                    while (!ppal.southS.isEmpty() && tCapacityS < 32000000) {
+                        Boxes box = (Boxes) ppal.northS.removeLast();
+                        tCapacityS += box.getVolume();
                         ppal.southT.push(ppal.southS.removeLast());
                     }
-                    while (!ppal.eastS.isEmpty()) {
+                    while (!ppal.eastS.isEmpty() && tCapacityE < 32000000) {
+                        Boxes box = (Boxes) ppal.northS.removeLast();
+                        tCapacityE += box.getVolume();
                         ppal.eastT.push(ppal.eastS.removeLast());
                     }
-                    while (!ppal.westS.isEmpty()) {
+                    while (!ppal.westS.isEmpty() && tCapacityW < 32000000) {
+                        Boxes box = (Boxes) ppal.northS.removeLast();
+                        tCapacityW += box.getVolume();
                         ppal.westT.push(ppal.westS.removeLast());
                     }
-                    while (!ppal.centerS.isEmpty()) {
+                    while (!ppal.centerS.isEmpty() && tCapacityC < 32000000) {
+                        Boxes box = (Boxes) ppal.northS.removeLast();
+                        tCapacityC += box.getVolume();
                         ppal.centerT.push(ppal.centerS.removeLast());
                     }
 
                     System.out.println("Los camiones cargados.");
                     break;
                 }
+
                 case 4 -> {
                     System.out.println("Despachando el camión del norte...");
                     while (!ppal.northT.isEmpty()) {
-                        Boxes box = (Boxes)ppal.northT.pop();
+                        Boxes box = (Boxes) ppal.northT.pop();
                         System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
 
                     System.out.println("Despachando el camión del sur...");
                     while (!ppal.southT.isEmpty()) {
-                        Boxes box = (Boxes)ppal.southT.pop();
+                        Boxes box = (Boxes) ppal.southT.pop();
                         System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
 
                     System.out.println("Despachando el camión del este...");
                     while (!ppal.eastT.isEmpty()) {
-                        Boxes box = (Boxes)ppal.eastT.pop();
+                        Boxes box = (Boxes) ppal.eastT.pop();
                         System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
 
                     System.out.println("Despachando el camión del oeste...");
                     while (!ppal.westT.isEmpty()) {
-                        Boxes box = (Boxes)ppal.westT.pop();
+                        Boxes box = (Boxes) ppal.westT.pop();
                         System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
 
                     System.out.println("Despachando el camión del centro...");
                     while (!ppal.centerT.isEmpty()) {
-                        Boxes box = (Boxes)ppal.centerT.pop();
+                        Boxes box = (Boxes) ppal.centerT.pop();
                         System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
                     }
-
                     System.out.println("Todos los camiones han sido despachados.");
                     break;
                 }
@@ -207,6 +239,12 @@ public class Principal {
                         Guides guide = itGuides.next();
                         System.out.println(guide);
                     }
+                    System.out.println("Se facturó en total: " + profitTotal + "\n"
+                            + " la bodega norte facturó: " + profitNorth + "\n"
+                            + " la bodega sur facturó: " + profitSouth + "\n"
+                            + " la bodega este facturó: " + profitEast + "\n"
+                            + " la bodega oeste facturó: " + profitWest + "\n"
+                            + " la bodega centro facturó: " + profitCenter + "\n");
                 }
 
             }
