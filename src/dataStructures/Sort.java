@@ -9,6 +9,7 @@ import objects.Boxes;
 public class Sort {
 
     /**
+     * Organiza por medio del método de insersión
      *
      * @param list
      */

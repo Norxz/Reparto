@@ -26,22 +26,46 @@ public class Guides {
         this.distance = distance;
     }
 
+    /**
+     *  Obtiene el remitente
+     * 
+     * @return
+     */
     public String getSender() {
         return sender;
     }
 
+    /**
+     *  Obtiene el receptor
+     * 
+     * @return
+     */
     public String getReceiver() {
         return receiver;
     }
 
+    /**
+     *  Obtiene la dirección
+     * 
+     * @return
+     */
     public String getDirection() {
         return direction;
     }
 
+    /**
+     *  Obtiene la distancia
+     * 
+     * @return
+     */
     public double getDistance() {
         return distance;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Guides{" + "sender=" + sender + ", receiver=" + receiver + ", direction=" + direction + ", distance=" + distance + '}';

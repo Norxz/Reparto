@@ -28,8 +28,7 @@ public class Boxes extends Guides {
      * @param receiver
      * @param direction
      * @param distance
-     */    
-    
+     */
     public Boxes(double volume, double volumetricWeight, double weight, double height, double wide, double large, double price, String sender, String receiver, String direction, double distance) {
         super(sender, receiver, direction, distance);
         this.volume = volume;
@@ -39,34 +38,6 @@ public class Boxes extends Guides {
         this.wide = wide;
         this.large = large;
         this.price = price;
-    }
-
-    public double getVolume() {
-        return volume;
-    }
-
-    public double getVolumetricWeight() {
-        return volumetricWeight;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getWide() {
-        return wide;
-    }
-
-    public double getLarge() {
-        return large;
-    }
-
-    public double getPrice() {
-        return price;
     }
 
     @Override
