@@ -22,7 +22,7 @@ public class Principal {
     Stack eastT = new Stack();
     Stack westT = new Stack();
     Stack centerT = new Stack();
-    Bags stats = new Bags();
+    Bags guides = new Bags();
     Operators op = new Operators();
 
     /**
@@ -30,15 +30,11 @@ public class Principal {
      */
     public static void main(String[] args) {
         int opc;
-        String direction = null;
+        String direction;
         Principal ppal = new Principal();
         Scanner in = new Scanner(System.in);
         Iterator<Boxes> itQueue = ppal.boxes.iterator();
-        Iterator<Boxes> itEastS = ppal.eastS.iterator();
-        Iterator<Boxes> itWestS = ppal.westS.iterator();
-        Iterator<Boxes> itNorthS = ppal.northS.iterator();
-        Iterator<Boxes> itSouthS = ppal.southS.iterator();
-        Iterator<Boxes> itCenterS = ppal.centerS.iterator();
+        Iterator<Guides> itGuides = ppal.guides.iterator();
 
         System.out.println("Bienvenido usuario!");
 
@@ -60,36 +56,42 @@ public class Principal {
                     String sender = in.next();
                     System.out.println("Quien recibe: \n");
                     String receiver = in.next();
-                    System.out.println("""
+                    do {
+                        System.out.println("""
                                        Direcci\u00f3n: 
                                        1. North
                                        2. South
                                        3. East
                                        4. West
                                        5. Center""");
-                    opc = in.nextInt();
-                    switch (opc) {
-                        case 1 -> {
-                            direction = "north";
-                            break;
+                        opc = in.nextInt();
+                        switch (opc) {
+                            case 1 -> {
+                                direction = "north";
+                                break;
+                            }
+                            case 2 -> {
+                                direction = "south";
+                                break;
+                            }
+                            case 3 -> {
+                                direction = "east";
+                                break;
+                            }
+                            case 4 -> {
+                                direction = "west";
+                                break;
+                            }
+                            case 5 -> {
+                                direction = "center";
+                                break;
+                            }
+                            default -> {
+                                direction = "invalid";
+                            }
                         }
-                        case 2 -> {
-                            direction = "south";
-                            break;
-                        }
-                        case 3 -> {
-                            direction = "east";
-                            break;
-                        }
-                        case 4 -> {
-                            direction = "west";
-                            break;
-                        }
-                        case 5 -> {
-                            direction = "center";
-                            break;
-                        }
-                    }
+                    } while (direction.equals("invalid"));
+
                     System.out.println("Ingrese la altura de la caja: ");
                     double height = in.nextDouble();
                     System.out.println("Ingrese el ancho de la caja: ");
@@ -104,6 +106,7 @@ public class Principal {
                     int price = ppal.op.priceCalculator(weight, volumetricWeight);
                     Boxes box = new Boxes(volume, volumetricWeight, weight, height, wide, large, price, sender, receiver, direction, distance);
                     ppal.boxes.enqueue(box);
+                    ppal.guides.add(box);
 
                     break;
                 }
@@ -162,40 +165,47 @@ public class Principal {
                     break;
                 }
                 case 4 -> {
-                    System.out.println("Despachando el camión del norte:");
+                    System.out.println("Despachando el camión del norte...");
                     while (!ppal.northT.isEmpty()) {
-                        Boxes box = (Boxes) ppal.northT.pop();
-                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
+                        Guides guide = (Guides) ppal.northT.pop();
+                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
                     }
 
-                    System.out.println("Despachando el camión del sur:");
+                    System.out.println("Despachando el camión del sur...");
                     while (!ppal.southT.isEmpty()) {
-                        Boxes box = (Boxes) ppal.southT.pop();
-                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
+                        Guides guide = (Guides) ppal.southT.pop();
+                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
                     }
 
-                    System.out.println("Despachando el camión del este:");
+                    System.out.println("Despachando el camión del este...");
                     while (!ppal.eastT.isEmpty()) {
-                        Boxes box = (Boxes) ppal.eastT.pop();
-                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
+                        Guides guide = (Guides) ppal.eastT.pop();
+                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
                     }
 
-                    System.out.println("Despachando el camión del oeste:");
+                    System.out.println("Despachando el camión del oeste...");
                     while (!ppal.westT.isEmpty()) {
-                        Boxes box = (Boxes) ppal.westT.pop();
-                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
+                        Guides guide = (Guides) ppal.westT.pop();
+                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
                     }
 
-                    System.out.println("Despachando el camión del centro:");
+                    System.out.println("Despachando el camión del centro...");
                     while (!ppal.centerT.isEmpty()) {
-                        Boxes box = (Boxes) ppal.centerT.pop();
-                        System.out.println("Entregando la caja de " + box.getSender() + " a " + box.getReceiver() + " a una distancia de " + box.getDistance() + " km.");
+                        Guides guide = (Guides) ppal.centerT.pop();
+                        System.out.println("Entregando la caja de " + guide.getSender() + " a " + guide.getReceiver() + " a una distancia de " + guide.getDistance() + " km.");
                     }
 
                     System.out.println("Todos los camiones han sido despachados.");
                     break;
-                    //pene
                 }
+
+                case 5 -> {
+                    while (itGuides.hasNext()) {
+                        Guides guide = itGuides.next();
+                        System.out.println(guide);
+                    }
+                }
+
             }
 
         } while (true);
