@@ -33,6 +33,7 @@ public class List<Item> implements Iterable<Item> {
      * @param element
      */
     public void add(Item element) {
+        try{
         Node newElement = new Node();
         newElement.item = element;
         if (count == 0) {
@@ -45,6 +46,9 @@ public class List<Item> implements Iterable<Item> {
             first.prev = last;
         }
         count++;
+        }catch(Exception e){
+             System.out.println("Ha ocurrido un error al agregar el elemento");
+        }
     }
 
     /**

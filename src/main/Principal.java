@@ -167,31 +167,47 @@ public class Principal {
                     int tCapacityE = 0;
                     int tCapacityW = 0;
                     int tCapacityC = 0;
+                    int tCapacity = 32000000;
 
-                    while (!ppal.northS.isEmpty() && tCapacityN < 32000000) {
+                    while (!ppal.northS.isEmpty() && tCapacityN < tCapacity) {
                         Boxes box = (Boxes) ppal.northS.removeLast();
-                        tCapacityN += box.getVolume();
-                        ppal.northT.push(box);
+                        if (tCapacityN + box.getVolume() < tCapacity) {
+                            tCapacityN += box.getVolume();
+                            ppal.northT.push(box);
+                        }
+
                     }
-                    while (!ppal.southS.isEmpty() && tCapacityS < 32000000) {
+                    while (!ppal.southS.isEmpty() && tCapacityS < tCapacity) {
                         Boxes box = (Boxes) ppal.northS.removeLast();
-                        tCapacityS += box.getVolume();
-                        ppal.southT.push(ppal.southS.removeLast());
+                        if (tCapacityS + box.getVolume() < tCapacity) {
+                            tCapacityS += box.getVolume();
+                            ppal.southT.push(ppal.southS.removeLast());
+                        }
+
                     }
-                    while (!ppal.eastS.isEmpty() && tCapacityE < 32000000) {
+                    while (!ppal.eastS.isEmpty() && tCapacityE < tCapacity) {
                         Boxes box = (Boxes) ppal.northS.removeLast();
-                        tCapacityE += box.getVolume();
-                        ppal.eastT.push(ppal.eastS.removeLast());
+                        if (tCapacityE + box.getVolume() < tCapacity) {
+                            tCapacityE += box.getVolume();
+                            ppal.eastT.push(ppal.eastS.removeLast());
+                        }
+
                     }
-                    while (!ppal.westS.isEmpty() && tCapacityW < 32000000) {
+                    while (!ppal.westS.isEmpty() && tCapacityW < tCapacity) {
                         Boxes box = (Boxes) ppal.northS.removeLast();
-                        tCapacityW += box.getVolume();
-                        ppal.westT.push(ppal.westS.removeLast());
+                        if (tCapacityW + box.getVolume() < tCapacity) {
+                            tCapacityW += box.getVolume();
+                            ppal.eastT.push(ppal.eastS.removeLast());
+                        }
+
                     }
-                    while (!ppal.centerS.isEmpty() && tCapacityC < 32000000) {
+                    while (!ppal.centerS.isEmpty() && tCapacityC < tCapacity) {
                         Boxes box = (Boxes) ppal.northS.removeLast();
-                        tCapacityC += box.getVolume();
-                        ppal.centerT.push(ppal.centerS.removeLast());
+                         if (tCapacityC + box.getVolume() < tCapacity) {
+                            tCapacityC += box.getVolume();
+                            ppal.eastT.push(ppal.eastS.removeLast());
+                        }
+
                     }
 
                     System.out.println("Los camiones cargados.");

@@ -23,11 +23,15 @@ public class Bags<Item> implements Iterable<Item> {
     }
 
     public void add(Item item) {
+        try{
         Node oldFirst = first;
         first = new Node();
         first.item = item;
         first.next = oldFirst;
         count++;
+        }catch(Exception e){
+            System.out.println("Ha ocurrido un error al agregar el item" );
+        }
     }
 
     public boolean isEmpty() {
