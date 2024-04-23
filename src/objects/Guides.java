@@ -42,4 +42,9 @@ public class Guides {
         return distance;
     }
 
+    @Override
+    public String toString() {
+        return "Guides{" + "sender=" + sender + ", receiver=" + receiver + ", direction=" + direction + ", distance=" + distance + '}';
+    }
+
 }

@@ -103,8 +103,9 @@ public class Principal {
                     double volumetricWeight = ppal.op.volumetricWeightCalculator(volume);
                     int price = ppal.op.priceCalculator(weight, volumetricWeight);
                     Boxes box = new Boxes(volume, volumetricWeight, weight, height, wide, large, price, sender, receiver, direction, distance);
+                    Guides guide = new Guides(sender, receiver, direction, distance);
                     ppal.boxes.enqueue(box);
-                    ppal.guides.add(box);
+                    ppal.guides.add(guide);
 
                     break;
                 }

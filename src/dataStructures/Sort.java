@@ -17,7 +17,7 @@ public class Sort {
             Boxes key = list.get(i);
             int j = i - 1;
 
-            while (j >= 0 && list.get(j).getDistance() < key.getDistance()) {
+            while (j >= 0 && list.get(j).getDistance() > key.getDistance()) {
                 list.set(j + 1, list.get(j));
                 j = j - 1;
             }
