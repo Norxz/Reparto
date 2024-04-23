@@ -33,8 +33,6 @@ public class Principal {
         String direction;
         Principal ppal = new Principal();
         Scanner in = new Scanner(System.in);
-        Iterator<Boxes> itQueue = ppal.boxes.iterator();
-        Iterator<Guides> itGuides = ppal.guides.iterator();
 
         System.out.println("Bienvenido usuario!");
 
@@ -114,6 +112,7 @@ public class Principal {
                     if (ppal.boxes.isEmpty()) {
                         System.out.println("No hay cajas en la cola para enviar a las bodegas.");
                     } else {
+                        Iterator<Boxes> itQueue = ppal.boxes.iterator();
                         while (itQueue.hasNext()) {
                             Boxes box = itQueue.next();
                             direction = box.getDirection();
@@ -200,6 +199,8 @@ public class Principal {
                 }
 
                 case 5 -> {
+
+                    Iterator<Guides> itGuides = ppal.guides.iterator();
                     while (itGuides.hasNext()) {
                         Guides guide = itGuides.next();
                         System.out.println(guide);
