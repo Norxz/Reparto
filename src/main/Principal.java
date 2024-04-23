@@ -49,7 +49,8 @@ public class Principal {
                                1. Ingresar caja
                                2. Enviar caja a la bodega
                                3. Cargar los camiones
-                               4. Mostrar gu\u00edas""");
+                               4. Despachar caminoes
+                               5. Mostrar gu\u00edas""");
             opc = in.nextInt();
 
             switch (opc) {
@@ -102,6 +103,7 @@ public class Principal {
                     double volumetricWeight = ppal.op.volumetricWeightCalculator(volume);
                     int price = ppal.op.priceCalculator(weight, volumetricWeight);
                     Boxes box = new Boxes(volume, volumetricWeight, weight, height, wide, large, price, sender, receiver, direction, distance);
+                    ppal.boxes.enqueue(box);
 
                     break;
                 }
@@ -134,8 +136,32 @@ public class Principal {
                     break;
                 }
                 case 3 -> {
-                    
+                    Sort.insertionSort(ppal.northS);
+                    Sort.insertionSort(ppal.southS);
+                    Sort.insertionSort(ppal.eastS);
+                    Sort.insertionSort(ppal.westS);
+                    Sort.insertionSort(ppal.centerS);
+
+                    while (!ppal.northS.isEmpty()) {
+                        ppal.northT.push(ppal.northS.removeLast());
+                    }
+                    while (!ppal.southS.isEmpty()) {
+                        ppal.southT.push(ppal.southS.removeLast());
+                    }
+                    while (!ppal.eastS.isEmpty()) {
+                        ppal.eastT.push(ppal.eastS.removeLast());
+                    }
+                    while (!ppal.westS.isEmpty()) {
+                        ppal.westT.push(ppal.westS.removeLast());
+                    }
+                    while (!ppal.centerS.isEmpty()) {
+                        ppal.centerT.push(ppal.centerS.removeLast());
+                    }
+
+                    System.out.println("Los camiones cargados.");
+                    break;
                 }
+
             }
 
         } while (true);

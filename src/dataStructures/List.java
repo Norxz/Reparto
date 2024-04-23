@@ -1,6 +1,7 @@
 package dataStructures;
 
 import java.util.*;
+import objects.Boxes;
 
 public class List<Item> implements Iterable<Item> {
 
@@ -8,7 +9,7 @@ public class List<Item> implements Iterable<Item> {
     private int count, countAdd;
 
     /**
-     *  Crea los nodos y los item de tipo item
+     * Crea los nodos y los item de tipo item
      */
     private class Node {
 
@@ -18,7 +19,7 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Constructor de a lista
+     * Constructor de a lista
      */
     public List() {
         first = null;
@@ -29,7 +30,7 @@ public class List<Item> implements Iterable<Item> {
 
     /**
      * Añade un elemento al final de la lista
-     * 
+     *
      * @param element
      */
     public void add(Item element) {
@@ -48,8 +49,8 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Añade un elemento a la posición indicada
-     * 
+     * Añade un elemento a la posición indicada
+     *
      * @param element
      * @param index
      * @return
@@ -57,7 +58,7 @@ public class List<Item> implements Iterable<Item> {
     public boolean add(Item element, int index) {
         if (index < 0 || index > count) {
             throw new NoSuchElementException("Error: Índice fuera de los límites de la lista.");
-            
+
         } else {
             Node newElement = new Node();
             newElement.item = element;
@@ -88,7 +89,7 @@ public class List<Item> implements Iterable<Item> {
 
     /**
      * Añade un elemento al inicio de la lista
-     * 
+     *
      * @param item
      */
     public void push(Item item) {
@@ -109,8 +110,8 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Elimina el primer elemento de la lista
-     * 
+     * Elimina el primer elemento de la lista
+     *
      * @return
      */
     public Item removeFirst() {
@@ -128,8 +129,8 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Elimina el último elemento de la lista.
-     * 
+     * Elimina el último elemento de la lista.
+     *
      * @return
      */
     public Item removeLast() {
@@ -150,8 +151,8 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Elimina un elemento en la posición indicada.
-     * 
+     * Elimina un elemento en la posición indicada.
+     *
      * @param index
      * @return
      */
@@ -177,8 +178,8 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Retorna el primer elemento de la lista.
-     * 
+     * Retorna el primer elemento de la lista.
+     *
      * @return
      */
     public Item peek() {
@@ -186,8 +187,8 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Verifica si la lista está vacía
-     * 
+     * Verifica si la lista está vacía
+     *
      * @return
      */
     public boolean isEmpty() {
@@ -195,17 +196,39 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Retorna la cantidad de elementos en la lista
-     * 
+     * Retorna la cantidad de elementos en la lista
+     *
      * @return
      */
     public int size() {
         return count;
     }
 
+    public Item get(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        Node current = first;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.item;
+    }
+
+    public void set(int index, Item item) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        Node current = first;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        current.item = item;
+    }
+
     /**
-     *  Imprime los elementos pero bonitos
-     * 
+     * Imprime los elementos pero bonitos
+     *
      * @return
      */
     @Override
@@ -228,8 +251,8 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Itera del primero al último 
-     * 
+     * Itera del primero al último
+     *
      * @return
      */
     @Override
@@ -238,8 +261,8 @@ public class List<Item> implements Iterable<Item> {
     }
 
     /**
-     *  Itera del último al primero
-     * 
+     * Itera del último al primero
+     *
      * @return
      */
     public Iterator<Item> reverseIterator() {
@@ -251,8 +274,8 @@ public class List<Item> implements Iterable<Item> {
         private Node current = first;
 
         /**
-         *  Verifica si tiene elementos al frente
-         * 
+         * Verifica si tiene elementos al frente
+         *
          * @return
          */
         @Override
@@ -261,8 +284,8 @@ public class List<Item> implements Iterable<Item> {
         }
 
         /**
-         *  Avanza a través de la lista en orden
-         * 
+         * Avanza a través de la lista en orden
+         *
          * @return
          */
         @Override
@@ -278,8 +301,8 @@ public class List<Item> implements Iterable<Item> {
         private Node current = last;
 
         /**
-         *  Verifica si tiene elementos al frente
-         * 
+         * Verifica si tiene elementos al frente
+         *
          * @return
          */
         @Override
@@ -288,8 +311,8 @@ public class List<Item> implements Iterable<Item> {
         }
 
         /**
-         *  Avanza a través de la lista en orden inverso
-         * 
+         * Avanza a través de la lista en orden inverso
+         *
          * @return
          */
         @Override
